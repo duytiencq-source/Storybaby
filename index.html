@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Story Baby Studio — Đà Lạt</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --rose:#c9776b;--rose-dark:#a85e53;--rose-light:#f5ece9;--rose-mid:#e8c4bc;
+  --cream:#fdf8f5;--warm-white:#fff9f7;
+  --ink:#2c1810;--ink-mid:#5a3830;--ink-soft:#9a7068;--ink-muted:#c4a89e;
+  --border:#ecddd8;--border-soft:#f5e8e4;
+}
+body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--ink);max-width:1200px;margin:0 auto;}
+
+/* HERO */
+.hero{background:var(--warm-white);padding:56px 44px 48px;text-align:center;border-bottom:1px solid var(--border);}
+.hero-logo{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--rose);font-weight:600;margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:12px;}
+.hero-logo::before,.hero-logo::after{content:'';width:32px;height:1px;background:var(--rose-mid);}
+.hero h1{font-size:40px;font-weight:300;color:var(--ink);letter-spacing:-1px;line-height:1.2;margin-bottom:10px;}
+.hero h1 em{font-style:italic;color:var(--rose);}
+.hero-sub{font-size:13px;font-weight:300;color:var(--ink-soft);line-height:1.9;max-width:380px;margin:0 auto 28px;}
+.btn-primary{display:inline-block;background:var(--rose);color:#fff;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:600;padding:15px 40px;border-radius:50px;border:none;cursor:pointer;transition:background .25s,transform .15s;}
+.btn-primary:hover{background:var(--rose-dark);transform:translateY(-1px);}
+.social-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:24px;}
+.soc-btn{display:inline-flex;align-items:center;gap:7px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:9px 18px;border-radius:24px;text-decoration:none;transition:opacity .15s;}
+.soc-fb{background:#1877f2;color:#fff;}
+.soc-tk{background:#010101;color:#fff;}
+.soc-hot{background:var(--rose-light);color:var(--rose-dark);border:1px solid var(--rose-mid);}
+
+/* SECTION */
+.sec-hdr{padding:44px 44px 0;display:flex;align-items:baseline;justify-content:space-between;}
+.sec-hdr h2{font-size:17px;font-weight:600;color:var(--ink);}
+.sec-hdr span{font-size:10px;color:var(--ink-muted);letter-spacing:2px;text-transform:uppercase;}
+
+/* GALLERY */
+
+.gallery-slider{position:relative;overflow:hidden;border-radius:16px;}
+.gallery-track{display:flex;transition:transform 0.45s cubic-bezier(.4,0,.2,1);height:340px;align-items:stretch;}
+.gal-slide{flex:0 0 auto;height:100%;overflow:hidden;border-radius:10px;margin-right:8px;}
+.gal-slide img{height:100%;display:block;object-fit:cover;}
+.gallery-btn{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.92);border:0.5px solid var(--border);color:var(--rose);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition:background 0.2s;line-height:1;}
+.gallery-btn:hover{background:#fff;}
+.gallery-btn.prev{left:10px;}
+.gallery-btn.next{right:10px;}
+.gallery-dots{display:flex;justify-content:center;gap:6px;margin-top:12px;}
+.gallery-dot{width:6px;height:6px;border-radius:50%;background:var(--rose-mid);cursor:pointer;transition:background 0.2s,transform 0.2s;}
+.gallery-dot.active{background:var(--rose);transform:scale(1.4);}
+
+/* CONCEPTS */
+.grid{padding:20px 44px 48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+.card{background:#fff;border:0.5px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .2s;}
+.card:hover{transform:translateY(-3px);}
+.card-thumb{height:148px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.card-thumb span{position:relative;z-index:1;font-size:30px;}
+.gal-dot{position:absolute;inset:0;opacity:.08;background-image:radial-gradient(circle,var(--rose) 1px,transparent 1px);background-size:14px 14px;}
+.c1{background:#fceee9;}.c2{background:#faf3ea;}.c3{background:#eaf0f8;}.c4{background:#f2eaf8;}.c5{background:#eaf5ec;}
+.card-body{padding:14px 16px 18px;}
+.card-num{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);font-weight:600;margin-bottom:3px;}
+.card-name{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:5px;}
+.card-tag{font-size:11px;font-weight:300;color:var(--ink-soft);font-style:italic;line-height:1.65;}
+.card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:0.5px solid var(--border-soft);}
+.card-price{font-size:11px;color:var(--rose);font-weight:600;}
+.card-open{font-family:'Montserrat',sans-serif;font-size:10px;color:var(--rose);font-weight:500;border:0.5px solid var(--rose-mid);background:transparent;padding:5px 12px;border-radius:14px;cursor:pointer;transition:background .2s;}
+.card-open:hover{background:var(--rose-light);}
+
+/* CONTACT */
+.contact-section{padding:0 44px 0;}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:20px;}
+.contact-info{display:flex;flex-direction:column;gap:12px;}
+.info-card{background:#fff;border:0.5px solid var(--border);border-radius:14px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;}
+.info-ico{width:38px;height:38px;border-radius:10px;background:var(--rose-light);border:0.5px solid var(--rose-mid);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.info-ico svg{width:16px;height:16px;}
+.info-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--rose);font-weight:600;margin-bottom:3px;}
+.info-val{font-size:12px;color:var(--ink);line-height:1.6;}
+.info-val a{color:var(--rose-dark);text-decoration:none;font-weight:500;}
+.soc-cards{display:flex;gap:10px;}
+.soc-card{flex:1;background:#fff;border:0.5px solid var(--border);border-radius:12px;padding:14px;text-align:center;text-decoration:none;transition:transform .15s,border-color .2s;}
+.soc-card:hover{transform:translateY(-2px);}
+.soc-card svg{width:22px;height:22px;margin:0 auto 6px;display:block;}
+.soc-card-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);font-weight:600;}
+.map-wrap{border-radius:16px;overflow:hidden;border:0.5px solid var(--border);}
+.map-wrap iframe{display:block;width:100%;height:290px;border:0;}
+.map-cta{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#fff;border-top:0.5px solid var(--border);}
+.map-addr-mini{font-size:11px;color:var(--ink-soft);line-height:1.5;}
+.map-link-btn{display:inline-flex;align-items:center;gap:6px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;background:var(--rose);color:#fff;padding:9px 16px;border-radius:20px;text-decoration:none;transition:background .2s;}
+.map-link-btn:hover{background:var(--rose-dark);}
+.map-link-btn svg{width:13px;height:13px;}
+
+/* FOOTER */
+.footer{background:#f9ecea;border-top:1px solid #ecc8c0;padding:40px 44px 32px;margin-top:48px;}
+.footer-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;padding-bottom:28px;border-bottom:0.5px solid #ecc8c0;margin-bottom:22px;}
+.footer-brand-name{font-size:22px;font-weight:300;color:var(--rose-dark);letter-spacing:1px;margin-bottom:4px;}
+.footer-brand-tag{font-size:10px;color:var(--ink-soft);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;}
+.footer-brand-desc{font-size:12px;font-weight:300;color:var(--ink-soft);line-height:1.8;}
+.footer-col-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--rose);font-weight:600;margin-bottom:14px;}
+.footer-link-list{display:flex;flex-direction:column;gap:9px;}
+.footer-link-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-mid);text-decoration:none;transition:color .15s;}
+.footer-link-item:hover{color:var(--rose);}
+.footer-link-item svg{width:14px;height:14px;flex-shrink:0;color:var(--rose-mid);}
+.footer-social-row{display:flex;gap:8px;margin-top:4px;}
+.footer-soc{display:inline-flex;align-items:center;gap:6px;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:8px 14px;border-radius:20px;text-decoration:none;}
+.footer-soc-fb{background:#1877f2;color:#fff;}
+.footer-soc-tk{background:#111;color:#fff;}
+.footer-soc svg{width:13px;height:13px;}
+.footer-bot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-copy{font-size:10px;color:var(--ink-muted);letter-spacing:1px;}
+.footer-hotline-mini{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--rose-dark);text-decoration:none;}
+
+/* POPUP CONCEPT */
+.popup-ov{position:fixed;inset:0;background:rgba(30,12,8,.6);display:flex;align-items:flex-start;justify-content:center;padding:20px;z-index:200;overflow-y:auto;}
+.popup-box{background:#fff;border-radius:20px;width:100%;max-width:660px;overflow:hidden;position:relative;margin:auto;}
+.popup-close{position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:50%;background:var(--rose-light);border:0.5px solid var(--rose-mid);color:var(--rose);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;z-index:10;}
+.popup-top{padding:28px 28px 20px;border-bottom:0.5px solid var(--border-soft);display:flex;align-items:flex-start;gap:20px;}
+.popup-ico{width:58px;height:58px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;position:relative;overflow:hidden;}
+.popup-lbl{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);font-weight:600;margin-bottom:5px;}
+.popup-title{font-size:24px;font-weight:600;color:var(--ink);margin-bottom:5px;}
+.popup-quote{font-size:11px;font-weight:300;color:var(--ink-soft);font-style:italic;line-height:1.8;}
+.popup-pills{display:flex;gap:8px;margin-top:14px;}
+.ppill{background:var(--rose-light);border:0.5px solid var(--rose-mid);border-radius:10px;padding:9px 14px;text-align:center;}
+.ppill strong{display:block;font-size:17px;font-weight:600;color:var(--rose);}
+.ppill span{font-size:9px;color:var(--ink-soft);letter-spacing:1px;text-transform:uppercase;}
+.popup-sec{padding:20px 28px;border-bottom:0.5px solid var(--border-soft);}
+.popup-sec-title{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--rose);font-weight:600;margin-bottom:14px;}
+.pmason{columns:3;column-gap:8px;}
+.pphoto{break-inside:avoid;margin-bottom:8px;border-radius:9px;overflow:hidden;border:0.5px solid var(--border);}
+.pphoto-in{display:flex;align-items:center;justify-content:center;font-size:18px;opacity:.35;}
+.pphoto-cap{padding:5px 9px;background:#fff;font-size:10px;color:var(--ink-muted);}
+.ptable{width:100%;border-collapse:collapse;}
+.ptable thead tr{background:var(--rose-light);}
+.ptable th{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--rose);font-weight:600;padding:9px 12px;text-align:left;}
+.ptable td{font-size:12px;color:var(--ink);padding:10px 12px;border-bottom:0.5px solid var(--border-soft);}
+.ptable tr:last-child td{border-bottom:none;}
+.pv{font-weight:600;color:var(--rose);font-size:13px;}
+.pn{font-size:10px;font-weight:300;color:var(--ink-muted);font-style:italic;}
+.pbest{background:var(--rose-light);color:var(--rose-dark);font-size:8px;letter-spacing:1px;text-transform:uppercase;font-weight:600;padding:2px 7px;border-radius:6px;margin-left:6px;vertical-align:middle;}
+.popup-cta-bar{padding:22px 28px;background:#fbeae6;border-top:1px solid var(--rose-mid);display:flex;align-items:center;justify-content:space-between;gap:14px;}
+.popup-cta-bar p{font-size:13px;font-weight:300;color:var(--ink-mid);line-height:1.6;}
+.popup-cta-bar p em{font-style:italic;color:var(--rose-dark);}
+.btn-popup-book{background:var(--rose);color:#fff;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:13px 26px;border-radius:30px;border:none;cursor:pointer;white-space:nowrap;}
+
+/* FORM */
+.form-ov{position:fixed;inset:0;background:rgba(180,100,80,.25);display:flex;align-items:center;justify-content:center;padding:20px;z-index:300;}
+.form-box{background:#fff;border-radius:20px;width:100%;max-width:480px;overflow:hidden;}
+.form-head{background:var(--rose);padding:24px 28px 20px;}
+.form-head h3{font-size:18px;font-weight:600;color:#fff;margin-bottom:4px;}
+.form-head p{font-size:11px;font-weight:300;color:rgba(255,255,255,.85);line-height:1.6;}
+.form-body{padding:24px 28px;}
+.form-row{margin-bottom:16px;}
+.form-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:7px;display:block;}
+.form-label em{font-size:9px;color:var(--ink-muted);font-style:normal;font-weight:400;margin-left:4px;letter-spacing:0;}
+.finput{width:100%;font-family:'Montserrat',sans-serif;font-size:12px;color:var(--ink);background:#fdf8f5;border:1px solid var(--border);border-radius:10px;padding:11px 14px;outline:none;transition:border-color .2s;}
+.finput:focus{border-color:var(--rose);}
+.fselect{appearance:none;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.source-group{display:flex;flex-wrap:wrap;gap:7px;}
+.src-btn{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:500;padding:7px 13px;border-radius:20px;border:0.5px solid var(--border);background:#fff;color:var(--ink-soft);cursor:pointer;transition:all .15s;}
+.src-btn.active{background:var(--rose);color:#fff;border-color:var(--rose);}
+.form-foot{padding:0 28px 24px;display:flex;align-items:center;gap:12px;}
+.btn-submit{flex:1;background:var(--rose);color:#fff;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;padding:14px;border-radius:12px;border:none;cursor:pointer;}
+.btn-cancel{font-family:'Montserrat',sans-serif;font-size:10px;color:var(--ink-muted);background:transparent;border:0.5px solid var(--border);padding:13px 18px;border-radius:12px;cursor:pointer;}
+.form-success{padding:40px 28px;text-align:center;}
+.form-success h4{font-size:18px;font-weight:600;color:var(--ink);margin:12px 0 8px;}
+.form-success p{font-size:12px;font-weight:300;color:var(--ink-soft);line-height:1.8;}
+
+@media(max-width:600px){
+  .form-ov{padding:0;align-items:flex-end;}
+  .form-box{border-radius:20px 20px 0 0;max-height:92vh;overflow-y:auto;}
+  .form-head{padding:18px 20px 14px;}
+  .form-head h3{font-size:16px;}
+  .form-body{padding:16px 20px;}
+  .form-grid{grid-template-columns:1fr;gap:0;}
+  .form-foot{padding:0 20px 24px;flex-direction:column;}
+  .btn-submit,.btn-cancel{width:100%;text-align:center;}
+  .popup-ov{padding:8px;}
+  .popup-box{border-radius:16px;}
+  .popup-top{padding:18px 18px 14px;flex-direction:column;gap:10px;}
+  .popup-title{font-size:20px;}
+  .popup-gallery{padding:14px 18px;}
+  .popup-pricing{padding:14px 18px;}
+  .pmason{columns:2;}
+  .popup-cta-bar{flex-direction:column;padding:16px 18px;gap:10px;text-align:center;}
+  .btn-popup-book{width:100%;}
+  .sec-hdr{padding:32px 20px 0;}
+  .grid{padding:14px 16px 32px;grid-template-columns:repeat(2,1fr);}
+  .contact-section{padding:0 16px 0;}
+  .contact-grid{grid-template-columns:1fr;}
+  .footer{padding:24px 20px 20px;}
+  .footer-top{grid-template-columns:1fr;gap:18px;}
+  .hero{padding:36px 20px 32px;}
+  .hero h1{font-size:26px;letter-spacing:-0.5px;}
+  .social-row{flex-wrap:wrap;gap:8px;}
+  .gallery-slider-wrap{padding:16px 10px 32px;gap:6px;}
+  .gsl-item img{height:150px;}
+  .gsl-btn{width:28px;height:28px;font-size:18px;}
+}
+
+/* Gallery hover preview */
+#galPreview{
+  position:fixed;inset:0;background:rgba(20,10,6,0.7);z-index:500;
+  display:none;align-items:center;justify-content:center;padding:20px;
+}
+.gal-prev-inner{
+  position:relative;max-width:90vw;max-height:88vh;
+  border-radius:16px;overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,0.5);
+}
+.gal-prev-inner img{
+  display:block;max-width:90vw;max-height:80vh;object-fit:contain;background:#111;
+}
+.gal-prev-close{
+  position:absolute;top:12px;right:12px;width:32px;height:32px;
+  border-radius:50%;background:rgba(255,255,255,0.9);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:#3d2020;cursor:pointer;font-weight:600;
+  transition:background .15s;
+}
+.gal-prev-close:hover{background:#fff;}
+.gal-prev-label{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(44,24,16,0.75));
+  color:#fff;text-align:center;padding:20px 16px 14px;
+  font-family:'Montserrat',sans-serif;font-size:11px;
+  letter-spacing:1.5px;text-transform:uppercase;font-weight:600;
+}
+.gsl-clickable{cursor:pointer;}
+/* Mobile booking form — centered, not pinned to bottom */
+@media(max-width:600px){
+  .form-ov{
+    padding:20px 12px;
+    align-items:center;
+    background:rgba(180,100,80,0.35);
+  }
+  .form-box{
+    border-radius:20px;
+    max-height:88vh;
+    overflow-y:auto;
+    width:100%;
+  }
+  .form-head{padding:20px 20px 14px;position:relative;}
+  .form-close-mobile{
+    position:absolute;top:14px;right:14px;
+    width:28px;height:28px;border-radius:50%;
+    background:rgba(255,255,255,0.25);border:none;
+    color:#fff;font-size:14px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .form-head h3{font-size:16px;padding-right:32px;}
+  .form-body{padding:16px 18px;}
+  .form-grid{grid-template-columns:1fr;}
+  .form-foot{padding:0 18px 20px;flex-direction:column;gap:8px;}
+  .btn-submit,.btn-cancel{width:100%;text-align:center;}
+  /* Popup concept mobile */
+  .popup-ov{padding:10px;align-items:center;}
+  .popup-box{border-radius:16px;max-height:90vh;overflow-y:auto;}
+  .popup-top{padding:18px 18px 14px;flex-direction:column;gap:10px;}
+  .popup-title{font-size:20px;}
+  .popup-pills{flex-wrap:wrap;}
+  .popup-gallery{padding:14px 18px;}
+  .pmason{columns:2;}
+  .popup-pricing{padding:14px 18px;}
+  .ptable th,.ptable td{padding:8px 8px;font-size:11px;}
+  .popup-cta-bar{flex-direction:column;padding:16px 18px;gap:10px;text-align:center;}
+  .btn-popup-book{width:100%;}
+  /* General mobile layout */
+  .sec-hdr{padding:32px 18px 0;}
+  .grid{padding:14px 16px 32px;grid-template-columns:repeat(2,1fr);}
+  .contact-section{padding:0 16px 0;}
+  .contact-grid{grid-template-columns:1fr;}
+  .footer{padding:28px 18px 20px;}
+  .footer-top{grid-template-columns:1fr;gap:18px;}
+  .hero{padding:40px 18px 32px;}
+  .hero h1{font-size:26px;letter-spacing:-0.5px;}
+  .social-row{flex-wrap:wrap;gap:8px;}
+  .gallery-slider-wrap{padding:16px 10px 28px;gap:6px;}
+  .gsl-item img{height:150px;}
+  .gsl-btn{width:28px;height:28px;font-size:18px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-logo">Story Baby Studio</div>
+  <h1>Lưu giữ khoảnh khắc<br><em>chân thật nhất</em></h1>
+  <p class="hero-sub">Mỗi bức ảnh là một câu chuyện — về bé, về gia đình, về những ngày không thể quay lại.</p>
+  <div class="social-row">
+    <a class="soc-btn soc-fb" href="https://www.facebook.com/storybabystudiodalat" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>Facebook
+    </a>
+    <a class="soc-btn soc-tk" href="https://www.tiktok.com/@xoaioi.tiemanhchobedalat" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9a8.18 8.18 0 004.78 1.52V7.08a4.85 4.85 0 01-1.01-.39z"/></svg>TikTok
+    </a>
+    <a class="soc-btn soc-hot" href="tel:0934521498">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.08 2.18 2 2 0 012.07 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-.41a2 2 0 012.11.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>093 452 14 98
+    </a>
+  </div>
+  <button class="btn-primary" onclick="openBooking(null)">Đặt lịch ngay ↗</button>
+</div>
+
+<!-- GALLERY -->
+<div class="sec-hdr"><h2>Thư viện ảnh studio</h2><span>Story Baby — Đà Lạt</span></div>
+<div class="gallery-slider-wrap">
+  <button class="gsl-btn" onclick="galSlide(-1)">&#8249;</button>
+  <div class="gsl-track-outer"><div class="gsl-track" id="galTrack"></div></div>
+  <button class="gsl-btn" onclick="galSlide(1)">&#8250;</button>
+</div>
+
+<!-- CONCEPTS -->
+<div class="sec-hdr"><h2>Các concept</h2><span>Chọn câu chuyện của bạn</span></div>
+<div class="grid" id="cardGrid"></div>
+
+<!-- CONTACT -->
+<div class="sec-hdr" style="padding-bottom:24px;"><h2>Liên hệ & Địa chỉ</h2><span>Story Baby Studio</span></div>
+<div class="contact-section">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="info-card">
+        <div class="info-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--rose)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><div class="info-lbl">Địa chỉ</div><div class="info-val">33b Xô Viết Nghệ Tĩnh, Phường 8<br>Lang Biang — Đà Lạt, Lâm Đồng</div></div>
+      </div>
+      <div class="info-card">
+        <div class="info-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--rose)" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.08 2.18 2 2 0 012.07 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-.41a2 2 0 012.11.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
+        <div><div class="info-lbl">Hotline</div><div class="info-val"><a href="tel:0934521498">093 452 14 98</a></div></div>
+      </div>
+      <div class="info-card">
+        <div class="info-ico"><svg viewBox="0 0 24 24" fill="none" stroke="var(--rose)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div><div class="info-lbl">Email</div><div class="info-val"><a href="mailto:storystudiodl@gmail.com">storystudiodl@gmail.com</a></div></div>
+      </div>
+      <div class="soc-cards">
+        <a class="soc-card" href="https://www.facebook.com/storybabystudiodalat" target="_blank" style="border-color:#e8f0fe;">
+          <svg viewBox="0 0 24 24" fill="#1877f2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          <div class="soc-card-lbl">Facebook</div>
+        </a>
+        <a class="soc-card" href="https://www.tiktok.com/@xoaioi.tiemanhchobedalat" target="_blank" style="border-color:#ddd;">
+          <svg viewBox="0 0 24 24" fill="#010101"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9a8.18 8.18 0 004.78 1.52V7.08a4.85 4.85 0 01-1.01-.39z"/></svg>
+          <div class="soc-card-lbl">TikTok</div>
+        </a>
+      </div>
+    </div>
+    <div class="map-wrap">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3903.174102968955!2d108.43067274019963!3d11.962444888316698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31711342cfe32ab5%3A0xd95d5d482af25462!2sStory%20Baby!5e0!3m2!1svi!2s!4v1777432707100!5m2!1svi!2s" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="map-cta">
+        <div class="map-addr-mini">33b Xô Viết Nghệ Tĩnh, Phường 8<br>Lang Biang — Đà Lạt</div>
+        <a class="map-link-btn" href="https://maps.google.com/?q=Story+Baby+33b+Xo+Viet+Nghe+Tinh+Da+Lat" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Mở Google Maps ↗
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">Story Baby</div>
+      <div class="footer-brand-tag">Studio chụp ảnh Đà Lạt</div>
+      <div class="footer-brand-desc">Lưu giữ những khoảnh khắc chân thật nhất của bé và gia đình.</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Liên hệ</div>
+      <div class="footer-link-list">
+        <a class="footer-link-item" href="tel:0934521498"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.08 2.18 2 2 0 012.07 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-.41a2 2 0 012.11.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>093 452 14 98</a>
+        <a class="footer-link-item" href="mailto:storystudiodl@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>storystudiodl@gmail.com</a>
+        <a class="footer-link-item" href="https://maps.google.com/?q=Story+Baby+Da+Lat" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>33b Xô Viết Nghệ Tĩnh, Đà Lạt</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Theo dõi chúng tôi</div>
+      <div class="footer-social-row">
+        <a class="footer-soc footer-soc-fb" href="https://www.facebook.com/storybabystudiodalat" target="_blank"><svg viewBox="0 0 24 24" fill="#fff"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>Facebook</a>
+        <a class="footer-soc footer-soc-tk" href="https://www.tiktok.com/@xoaioi.tiemanhchobedalat" target="_blank"><svg viewBox="0 0 24 24" fill="#fff"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9a8.18 8.18 0 004.78 1.52V7.08a4.85 4.85 0 01-1.01-.39z"/></svg>TikTok</a>
+      </div>
+      <div style="margin-top:16px;"><button class="btn-primary" style="font-size:10px;padding:12px 24px;" onclick="openBooking(null)">Đặt lịch ngay ↗</button></div>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <div class="footer-copy">© 2025 Story Baby Studio — Đà Lạt, Lâm Đồng</div>
+    <a class="footer-hotline-mini" href="tel:0934521498"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.08 2.18 2 2 0 012.07 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-.41a2 2 0 012.11.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>093 452 14 98</a>
+  </div>
+</div>
+
+<script src="assets/images.js"></script>
+<script>
+const GALLERY_CONCEPT_MAP = [None, None, None, None, None, None, None, 'family', 'family', 'kyyeu', 'maternity', 'maternity', 'maternity', 'maternity', 'birthday', 'birthday', 'kyyeu', 'kyyeu'];
+
+
+
+const concepts=[
+  {id:'newborn',num:'01',name:'NewBorn',thumb:'c1',emoji:'🌸',tagline:'"Những ngày đầu tiên — nhỏ bé, kỳ diệu, và mãi mãi"',meta1:{val:'7–14',lbl:'ngày tuổi'},meta2:{val:'2–3h',lbl:'thời gian chụp'},priceIntro:'Giá tính theo số ảnh retouch hoàn chỉnh.',photos:[{bg:'#fceee9',h:155,cap:'Bé ngủ say — wrap pose'},{bg:'#fdf5f3',h:125,cap:'Đôi bàn tay nhỏ xíu'},{bg:'#fae8ec',h:170,cap:'Mẹ và bé — skin to skin'},{bg:'#fdf0f2',h:140,cap:'Newborn basket prop'},{bg:'#fae8ec',h:155,cap:'Ba và bé'},{bg:'#fef5f6',h:125,cap:'Close-up đôi chân bé'}],pricing:[{p:'5 ảnh retouch',v:'1.200.000 ₫',n:'Lưu kỷ niệm'},{p:'10 ảnh retouch',v:'2.000.000 ₫',n:'Phổ biến nhất',best:true},{p:'20 ảnh retouch',v:'3.500.000 ₫',n:'Trọn vẹn nhất'},{p:'Toàn bộ ảnh gốc',v:'+ 500.000 ₫',n:'Bổ sung thêm'}]},
+  {id:'birthday',num:'02',name:'Birthday',thumb:'c2',emoji:'🎂',tagline:'"Một tuổi, một nụ cười, một câu chuyện bắt đầu"',meta1:{val:'1–3',lbl:'tuổi phù hợp'},meta2:{val:'1–2h',lbl:'thời gian chụp'},priceIntro:'Bao gồm props sinh nhật cơ bản.',photos:[{bg:'#faf3ea',h:150,cap:'Bánh kem & nến'},{bg:'#fdf8ee',h:125,cap:'Bé cười với bóng bay'},{bg:'#faf5ee',h:165,cap:'Gia đình quây quần'},{bg:'#fdeee0',h:140,cap:'Bé chơi với props'},{bg:'#fef5e8',h:150,cap:'Close-up nụ cười'},{bg:'#fefaf0',h:125,cap:'Birthday banner'}],pricing:[{p:'5 ảnh retouch',v:'1.000.000 ₫',n:'Gói nhỏ gọn'},{p:'10 ảnh retouch',v:'1.800.000 ₫',n:'Phổ biến nhất',best:true},{p:'20 ảnh retouch',v:'3.200.000 ₫',n:'Trọn vẹn nhất'},{p:'Toàn bộ ảnh gốc',v:'+ 500.000 ₫',n:'Bổ sung thêm'}]},
+  {id:'family',num:'03',name:'Gia đình',thumb:'c3',emoji:'🏡',tagline:'"Ở đây có tình yêu — và nó trông như thế này"',meta1:{val:'2–6',lbl:'thành viên'},meta2:{val:'1–2h',lbl:'thời gian chụp'},priceIntro:'Phù hợp gia đình nhỏ đến nhiều thế hệ.',photos:[{bg:'#eaf0f8',h:155,cap:'Cả gia đình cùng cười'},{bg:'#eef5fd',h:130,cap:'Ba mẹ và bé'},{bg:'#e4ecf8',h:170,cap:'Khoảnh khắc tự nhiên'},{bg:'#eaf3fd',h:140,cap:'Ôm nhau thật chặt'},{bg:'#e8f0f8',h:155,cap:'Ông bà và cháu'},{bg:'#f0f6fd',h:130,cap:'Vui đùa trong studio'}],pricing:[{p:'5 ảnh retouch',v:'1.000.000 ₫',n:'Gia đình nhỏ'},{p:'10 ảnh retouch',v:'1.800.000 ₫',n:'Phổ biến nhất',best:true},{p:'20 ảnh retouch',v:'3.000.000 ₫',n:'Đầy đủ nhất'},{p:'Toàn bộ ảnh gốc',v:'+ 500.000 ₫',n:'Bổ sung thêm'}]},
+  {id:'maternity',num:'04',name:'Mẹ bầu',thumb:'c4',emoji:'🌷',tagline:'"Trước khi gặp con, mẹ đã yêu con rồi"',meta1:{val:'28–34',lbl:'tuần thai'},meta2:{val:'1–2h',lbl:'thời gian chụp'},priceIntro:'Tôn vinh vẻ đẹp mẹ bầu.',photos:[{bg:'#f2eaf8',h:165,cap:'Dáng nghiêng thanh thoát'},{bg:'#f8f0fd',h:130,cap:'Tay mẹ ôm bụng bầu'},{bg:'#eee0fc',h:155,cap:'Ba mẹ cùng nhau'},{bg:'#f5eafd',h:140,cap:'Ánh sáng tự nhiên'},{bg:'#ede0f8',h:160,cap:'Trang phục flowing'},{bg:'#f8f2fd',h:125,cap:'Nụ cười hạnh phúc'}],pricing:[{p:'5 ảnh retouch',v:'1.200.000 ₫',n:'Lưu kỷ niệm'},{p:'10 ảnh retouch',v:'2.000.000 ₫',n:'Phổ biến nhất',best:true},{p:'20 ảnh retouch',v:'3.500.000 ₫',n:'Đầy đủ nhất'},{p:'Toàn bộ ảnh gốc',v:'+ 500.000 ₫',n:'Bổ sung thêm'}]},
+  {id:'kyyeu',num:'05',name:'Kỷ yếu',thumb:'c5',emoji:'🎓',tagline:'"Tuổi thơ qua đi — nhưng ký ức thì ở lại"',meta1:{val:'Mọi',lbl:'độ tuổi'},meta2:{val:'1–2h',lbl:'thời gian chụp'},priceIntro:'Dành cho lớp học, nhóm bạn hoặc cá nhân.',photos:[{bg:'#eaf5ec',h:155,cap:'Cả lớp chụp chung'},{bg:'#eefcf0',h:125,cap:'Từng bạn — cá tính'},{bg:'#e0f8e4',h:170,cap:'Nhóm bạn thân'},{bg:'#e8fcea',h:140,cap:'Phong cách tự nhiên'},{bg:'#eafde8',h:155,cap:'Props trường học'},{bg:'#f0fdf2',h:125,cap:'Khoảnh khắc vui vẻ'}],pricing:[{p:'5 ảnh retouch',v:'800.000 ₫',n:'Mỗi học sinh'},{p:'10 ảnh retouch',v:'1.400.000 ₫',n:'Phổ biến nhất',best:true},{p:'20 ảnh retouch',v:'2.500.000 ₫',n:'Trọn vẹn nhất'},{p:'Toàn bộ ảnh gốc',v:'+ 500.000 ₫',n:'Bổ sung thêm'}]}
+];
+
+const sym=['✿','❋','✦','◇','❀','✾','◈','❃','✧','❁','◉','✺'];
+
+// Build gallery with real images
+function buildGallery(){
+  var track=document.getElementById('galTrack');
+  if(!track) return;
+  GALLERY_IMGS.forEach(function(item,idx){
+    var conceptId = GALLERY_CONCEPT_MAP[idx] || null;
+    var d=document.createElement('div');
+    d.className='gsl-item'+(conceptId?' gsl-clickable':'');
+    d.style.cssText='position:relative;cursor:'+(conceptId?'pointer':'default')+';';
+    var img=document.createElement('img');
+    img.src=item.src||item;
+    img.style.cssText='height:200px;width:auto;object-fit:cover;display:block;';
+    d.appendChild(img);
+
+    // Hover overlay
+    var ov=document.createElement('div');
+    ov.className='gsl-hover-ov';
+    ov.style.cssText='position:absolute;inset:0;background:rgba(44,24,16,0);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;transition:background .2s;pointer-events:none;border-radius:12px;';
+    if(conceptId){
+      var names={'newborn':'NewBorn','birthday':'Birthday','family':'Gia đình','kyyeu':'Kỷ yếu','maternity':'Mẹ bầu'};
+      ov.innerHTML='<span style="color:#fff;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:600;opacity:0;transition:opacity .2s;">'+names[conceptId]+'</span>';
+    }
+    d.appendChild(ov);
+
+    d.addEventListener('mouseenter',function(){
+      ov.style.background='rgba(44,24,16,0.45)';
+      var sp=ov.querySelector('span');
+      if(sp) sp.style.opacity='1';
+      // Show full image preview
+      showGalPreview(img.src, conceptId);
+    });
+    d.addEventListener('mouseleave',function(){
+      ov.style.background='rgba(44,24,16,0)';
+      var sp=ov.querySelector('span');
+      if(sp) sp.style.opacity='0';
+      hideGalPreview();
+    });
+
+    if(conceptId){
+      d.addEventListener('click',function(){
+        hideGalPreview();
+        openConcept(conceptId);
+      });
+    }
+    track.appendChild(d);
+  });
+}
+
+var galPreviewTimer=null;
+function showGalPreview(src, conceptId){
+  clearTimeout(galPreviewTimer);
+  var prev=document.getElementById('galPreview');
+  if(!prev){ prev=document.createElement('div'); prev.id='galPreview'; document.body.appendChild(prev); }
+  prev.innerHTML='<div class="gal-prev-inner"><img src="'+src+'"><div class="gal-prev-close" onclick="hideGalPreview()">✕</div>'+(conceptId?'<div class="gal-prev-label">Bấm để xem concept</div>':'')+'</div>';
+  prev.style.display='flex';
+}
+function hideGalPreview(){
+  var prev=document.getElementById('galPreview');
+  if(prev) prev.style.display='none';
+}
+var galOffset=0;
+function galSlide(dir){
+  var track=document.getElementById('galTrack');
+  if(!track) return;
+  var items=track.querySelectorAll('.gsl-item');
+  if(!items.length) return;
+  var itemW=items[0].offsetWidth+10;
+  var visibleW=track.parentElement.offsetWidth;
+  var maxOffset=Math.max(0,items.length*itemW-visibleW);
+  galOffset=Math.max(0,Math.min(galOffset+dir*itemW*2,maxOffset));
+  track.style.transform='translateX(-'+galOffset+'px)';
+}
+
+let galIdx=0;
+function galMove(dir){
+  galIdx=Math.max(0,Math.min(galIdx+dir,GALLERY_IMGS.length-1));
+  galApply();
+}
+function galGoto(i){galIdx=i;galApply();}
+function galApply(){
+  const track=document.getElementById('galTrack');
+  if(!track)return;
+  const slides=track.querySelectorAll('.gal-slide');
+  let offset=0;
+  for(let i=0;i<galIdx;i++) offset+=slides[i].offsetWidth+8;
+  track.style.transform=`translateX(-${offset}px)`;
+  document.querySelectorAll('.gallery-dot').forEach((d,i)=>d.classList.toggle('active',i===galIdx));
+}
+
+
+function buildCards(){
+  const g=document.getElementById('cardGrid');
+  concepts.forEach(c=>{
+    const d=document.createElement('div');d.className='card';
+    const thumbSrc=THUMB_IMGS[c.id];
+    const thumbHtml=thumbSrc
+      ? `<div class="card-thumb" style="background:none;"><img src="${thumbSrc}" style="width:100%;height:148px;object-fit:cover;display:block;border-radius:0;"></div>`
+      : `<div class="card-thumb ${c.thumb}"><div class="gal-dot"></div><span>${c.emoji}</span></div>`;
+    d.innerHTML=thumbHtml+`<div class="card-body"><div class="card-num">Concept ${c.num}</div><div class="card-name">${c.name}</div><div class="card-tag">${c.tagline}</div><div class="card-foot"><span class="card-price">Từ ${c.pricing[0].v}</span><button class="card-open" onclick="openConcept('${c.id}')">Xem chi tiết →</button></div></div>`;
+    g.appendChild(d);
+  });
+}
+
+function openConcept(id){
+  const c=concepts.find(x=>x.id===id);
+  const photoArr = c.id==='family' ? FAMILY_IMGS : c.id==='birthday' ? BIRTHDAY_IMGS : c.id==='kyyeu' ? KYYEU_IMGS : c.id==='maternity' ? MATERNITY_IMGS : c.id==='newborn' ? NEWBORN_IMGS : c.photos;
+  const photos=photoArr.map((p,i)=>{
+    if(c.id==='newborn' && NEWBORN_IMGS[i]){
+      return `<div class="pphoto"><img src="${NEWBORN_IMGS[i].src}" alt="${NEWBORN_IMGS[i].cap}" style="width:100%;height:${NEWBORN_IMGS[i].h}px;object-fit:cover;display:block;"><div class="pphoto-cap">${NEWBORN_IMGS[i].cap}</div></div>`;
+    }
+    if(c.id==='family'||c.id==='birthday'||c.id==='kyyeu'){
+      return `<div class="pphoto"><img src="${p.src}" style="width:100%;height:${p.h}px;object-fit:cover;display:block;border-radius:0;"></div>`;
+    }
+    if(c.id==='birthday'||c.id==='kyyeu'){
+      return `<div class="pphoto"><img src="${p.src}" style="width:100%;height:160px;object-fit:cover;display:block;border-radius:0;"></div>`;
+    }
+    return `<div class="pphoto"><div class="pphoto-in" style="height:${p.h}px;background:${p.bg};">${sym[i%sym.length]}</div><div class="pphoto-cap">${p.cap}</div></div>`;
+  }).join('');
+  const rows=c.pricing.map(r=>`<tr><td>${r.p}${r.best?'<span class="pbest">Phổ biến</span>':''}</td><td><span class="pv">${r.v}</span></td><td class="pn">${r.n}</td></tr>`).join('');
+  const ov=document.createElement('div');ov.className='popup-ov';
+  ov.innerHTML=`<div class="popup-box"><button class="popup-close" onclick="this.closest('.popup-ov').remove()">✕</button><div class="popup-top"><div class="popup-ico ${c.thumb}"><div class="gal-dot"></div><span style="position:relative;z-index:1;">${c.emoji}</span></div><div><div class="popup-lbl">Concept ${c.num} — Story Baby Studio</div><div class="popup-title">${c.name}</div><div class="popup-quote">${c.tagline}</div><div class="popup-pills"><div class="ppill"><strong>${c.meta1.val}</strong><span>${c.meta1.lbl}</span></div><div class="ppill"><strong>${c.meta2.val}</strong><span>${c.meta2.lbl}</span></div></div></div></div><div class="popup-sec"><div class="popup-sec-title">Thư viện ảnh</div><div class="pmason">${photos}</div></div><div class="popup-sec"><div class="popup-sec-title">Bảng giá</div><p style="font-size:11px;font-weight:300;color:#9a7068;line-height:1.8;margin-bottom:14px;">${c.priceIntro}</p><table class="ptable"><thead><tr><th>Số ảnh retouch</th><th>Giá</th><th>Ghi chú</th></tr></thead><tbody>${rows}</tbody></table></div><div class="popup-cta-bar"><p>Sẵn sàng đặt lịch?<br><em>${c.name}</em></p><button class="btn-popup-book" onclick="this.closest('.popup-ov').remove();openBooking('${c.id}')">Đặt lịch ngay ↗</button></div></div>`;
+  ov.addEventListener('click',e=>{if(e.target===ov)ov.remove();});
+  document.body.appendChild(ov);
+}
+
+function openBooking(conceptId){
+  const opts=concepts.map(c=>`<option value="${c.id}"${conceptId===c.id?' selected':''}>${c.name}</option>`).join('');
+  const sources=['Facebook','TikTok','Google','Bạn bè','Khác'];
+  const srcBtns=sources.map(s=>`<button type="button" class="src-btn" onclick="this.classList.toggle('active')">${s}</button>`).join('');
+  const ov=document.createElement('div');ov.className='form-ov';
+  ov.innerHTML=`<div class="form-box"><div class="form-head"><button class="form-close-mobile" onclick="this.closest('.form-ov').remove()">✕</button><h3>Đặt lịch chụp ảnh</h3><p>Story Baby Studio — 33b Xô Viết Nghệ Tĩnh, Đà Lạt</p></div><div class="form-body"><div class="form-grid"><div class="form-row" style="margin-bottom:0;"><label class="form-label">Họ và tên <span style="color:var(--rose);">*</span></label><input class="finput" id="f-name" type="text" placeholder="Nguyễn Thị Lan"></div><div class="form-row" style="margin-bottom:0;"><label class="form-label">Số điện thoại <span style="color:var(--rose);">*</span></label><input class="finput" id="f-phone" type="tel" placeholder="09x xxx xxxx"></div></div><div class="form-row" style="margin-top:16px;"><label class="form-label">Chọn concept <span style="color:var(--rose);">*</span></label><select class="finput fselect" id="f-concept"><option value="">-- Chọn concept --</option>${opts}</select></div><div class="form-row"><label class="form-label">Ngày mong muốn <span style="color:var(--rose);">*</span></label><input class="finput" id="f-date" type="date"></div><div class="form-row"><label class="form-label">Bạn biết tôi qua đâu? <em>(không bắt buộc)</em></label><div class="source-group">${srcBtns}</div></div></div><div class="form-foot"><button class="btn-cancel" onclick="this.closest('.form-ov').remove()">Huỷ</button><button class="btn-submit" onclick="submitForm()">Gửi đặt lịch ↗</button></div></div>`;
+  ov.addEventListener('click',e=>{if(e.target===ov)ov.remove();});
+  document.body.appendChild(ov);
+}
+
+function submitForm(){
+  const name=document.getElementById('f-name').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  const concept=document.getElementById('f-concept').value;
+  const date=document.getElementById('f-date').value;
+  if(!name||!phone||!concept||!date){alert('Vui lòng điền: '+[!name&&'Họ và tên',!phone&&'Số điện thoại',!concept&&'Concept',!date&&'Ngày mong muốn'].filter(Boolean).join(', '));return;}
+  document.querySelector('.form-box').innerHTML=`<div class="form-success"><div style="width:52px;height:52px;border-radius:50%;background:var(--rose-light);border:1px solid var(--rose-mid);display:flex;align-items:center;justify-content:center;margin:0 auto;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--rose)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><h4>Đặt lịch thành công!</h4><p>Cảm ơn <strong>${name}</strong>!<br>Studio sẽ liên hệ xác nhận qua <strong>${phone}</strong><br>trong vòng 24 giờ. Hẹn gặp bạn tại Story Baby 🌸</p><button class="btn-primary" style="margin-top:20px;font-size:11px;" onclick="this.closest('.form-ov').remove()">Đóng</button></div>`;
+}
+
+buildGallery();
+buildCards();
+
+
+</script>
+</body>
+</html>
